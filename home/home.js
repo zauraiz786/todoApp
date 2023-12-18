@@ -63,6 +63,10 @@ async function renderTodo() {
     let t = document.createTextNode(item.title);
     li.prepend(t)
     ul.prepend(li);
+<<<<<<< HEAD
+=======
+    // console.log(item.title);
+>>>>>>> c701d7cc6fd7b338859d9fcfa8e49628966023f8
   })
 }
 renderTodo()
