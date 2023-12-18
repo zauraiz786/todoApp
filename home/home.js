@@ -42,7 +42,6 @@ form.addEventListener('submit', async (event) => {
     const docRef = await addDoc(collection(db, "todos"), {
       title: input.value,
     });
-    console.log("Document written with ID: ", docRef.id);
 
   } catch (e) {
     console.error("Error adding document: ", e);
@@ -50,19 +49,19 @@ form.addEventListener('submit', async (event) => {
 })
 
 //render data
-let arr = [];
-async function renderTodo() {
-  const querySnapshot = await getDocs(collection(db, "todos"));
-  querySnapshot.forEach((doc) => {
-    arr.push(doc.data());
-  });
-  console.log(arr);
-  arr.map((item) => {
-    let li = document.createElement('li');
-    li.classList.add('font');
-    let t = document.createTextNode(item.title);
-    li.prepend(t)
-    ul.prepend(li);
-  })
-}
-renderTodo()
+// let arr = [];
+// async function renderTodo() {
+//   const querySnapshot = await getDocs(collection(db, "todos"));
+//   querySnapshot.forEach((doc) => {
+//     arr.push(doc.data());
+//   });
+//   console.log(arr);
+//   arr.map((item) => {
+//     let li = document.createElement('li');
+//     li.classList.add('font');
+//     let t = document.createTextNode(item.title);
+//     li.prepend(t)
+//     ul.prepend(li);
+//   })
+// }
+// renderTodo()

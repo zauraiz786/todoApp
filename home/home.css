@@ -65,6 +65,14 @@ div > div {
 .add:hover {
   background-color: lightcyan;
 }
-.font{
-  font-size: 20px;
+#ul li{
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+  height: 35px;
+  width: 220px;
+  border: 2px solid royalblue;
+  padding: 5px;
+  border-radius: 22px;
+  font-size: 17px;
 }
