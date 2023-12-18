@@ -63,7 +63,6 @@ async function renderTodo() {
     let t = document.createTextNode(item.title);
     li.prepend(t)
     ul.prepend(li);
-    // console.log(item.title);
   })
 }
 renderTodo()
