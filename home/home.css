@@ -65,3 +65,6 @@ div > div {
 .add:hover {
   background-color: lightcyan;
 }
+.font{
+  font-size: 20px;
+}
