@@ -29,8 +29,7 @@ button.addEventListener('click', () => {
 add.addEventListener('click', () => {
   let li = document.createElement('li');
   li.classList.add('font');
-  let t = document.createTextNode(input.value);
-  li.prepend(t)
+  li.innerHTML += input.value + '<button class="delete">delete</button>';
   if (input.value === '') alert('Please enter text')
   else ul.prepend(li);
 })
@@ -48,20 +47,19 @@ form.addEventListener('submit', async (event) => {
   }
 })
 
-//render data
-// let arr = [];
-// async function renderTodo() {
-//   const querySnapshot = await getDocs(collection(db, "todos"));
-//   querySnapshot.forEach((doc) => {
-//     arr.push(doc.data());
-//   });
-//   console.log(arr);
-//   arr.map((item) => {
-//     let li = document.createElement('li');
-//     li.classList.add('font');
-//     let t = document.createTextNode(item.title);
-//     li.prepend(t)
-//     ul.prepend(li);
-//   })
-// }
-// renderTodo()
+// render data
+let arr = [];
+async function renderTodo() {
+  const querySnapshot = await getDocs(collection(db, "todos"));
+  querySnapshot.forEach((doc) => {
+    arr.push(doc.data());
+  });
+  console.log(arr);
+  arr.map((item) => {
+    let li = document.createElement('li');
+    li.classList.add('font');
+    li.innerHTML += item.title + '<button class="delete">delete</button>';
+    ul.prepend(li);
+  })
+}
+renderTodo()
