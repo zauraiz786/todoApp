@@ -1,23 +1,26 @@
 import { signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { collection, addDoc, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { auth, db } from "../config.js";
 
 //Check User is login or not
 onAuthStateChanged(auth, (user) => {
   if (user) {
     const uid = user.uid;
-    console.log(uid);
+    renderTodo(uid)
+    console.log('user id:' + uid);
   } else {
     window.location = '../login/login.html'
   }
 });
 
+//Dom Elements
 const button = document.querySelector('#button');
 const add = document.querySelector('.add');
 const input = document.getElementById('myInput');
 const form = document.getElementById('form');
 const ul = document.getElementById('ul');
 
+//Sign-out function
 button.addEventListener('click', () => {
   signOut(auth).then(() => {
     window.location = "../login/login.html"
@@ -26,10 +29,11 @@ button.addEventListener('click', () => {
   })
 })
 
+//Add Todo function
 add.addEventListener('click', () => {
   let li = document.createElement('li');
   li.classList.add('font');
-  li.innerHTML += input.value + '<button class="delete">delete</button>';
+  li.innerHTML += input.value + '<div class="inline"><button class="edit">Edit</button><button class="delete">Delete</button></div>';
   if (input.value === '') alert('Please enter text')
   else ul.prepend(li);
 })
@@ -37,20 +41,24 @@ add.addEventListener('click', () => {
 //send data
 form.addEventListener('submit', async (event) => {
   event.preventDefault()
-  try {
-    const docRef = await addDoc(collection(db, "todos"), {
-      title: input.value,
-    });
-
-  } catch (e) {
-    console.error("Error adding document: ", e);
+  if (!(input.value == '')) {
+    try {
+      const docRef = await addDoc(collection(db, "todos"), {
+        title: input.value,
+        user_Id: auth.currentUser.uid,
+      });
+  
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
   }
 })
 
 // render data
 let arr = [];
-async function renderTodo() {
-  const querySnapshot = await getDocs(collection(db, "todos"));
+async function renderTodo(uid) {
+  const q = query(collection(db, "todos"), where("user_Id", "==", uid));
+  const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
     arr.push(doc.data());
   });
@@ -58,8 +66,7 @@ async function renderTodo() {
   arr.map((item) => {
     let li = document.createElement('li');
     li.classList.add('font');
-    li.innerHTML += item.title + '<button class="delete">delete</button>';
+    li.innerHTML += item.title + '<div class="inline"><button class="edit">Edit</button><button class="delete">Delete</button></div>';
     ul.prepend(li);
   })
 }
-renderTodo()

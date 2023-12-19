@@ -1,5 +1,5 @@
 body {
-  background-image: linear-gradient(cyan, royalblue);
+  background-image: linear-gradient(darkblue, lightblue);
   background-size: cover;
   display: flex;
   align-items: center;
@@ -9,8 +9,8 @@ body {
 }
 #main {
   font-family: Arial, Helvetica, sans-serif;
-  height: 500px;
-  width: 380px;
+  height: 550px;
+  width: 420px;
   border-radius: 5px;
   background-color: #fff;
   /* border: 2px solid black; */
@@ -24,75 +24,94 @@ body {
   align-items: center;
 }
 .head h1 {
-  font-size: 36px;
+  font-size: 40px;
 }
 .head button {
-  height: 35px;
-  width: 70px;
-  font-size: 15px;
+  height: 45px;
+  width: 85px;
+  font-size: 19px;
   outline: none;
-  border-radius: 33px;
+  border-radius: 20px;
   border: none;
   cursor: pointer;
+  background-color: rgb(215, 253, 253);
 }
 .head button:hover {
-  background-color: rgb(232, 231, 231);
+  background-color: lightblue;
 }
 div > div {
-  padding-left: 30px;
+  padding-left: 43px;
 }
 .align {
-  height: 35px;
-  width: 250px;
+  height: 40px;
+  width: 260px;
   outline: none;
   border: 1px solid;
   border-radius: 8px;
 }
 .align::placeholder {
-  font-size: 17px;
+  padding: 5px;
+  font-size: 20px;
 }
 .input input {
-  font-size: 17px;
+  padding: 5px;
+  font-size: 20px;
 }
 .add {
-  height: 40px;
-  width: 55px;
-  font-size: 15px;
+  height: 50px;
+  width: 65px;
+  font-size: 20px;
   cursor: pointer;
   outline: none;
   border: none;
   border-radius: 8px;
   background-color: rgba(160, 57, 160, 0.908);
   color: #fff;
-
 }
 .add:hover {
   background-color: purple;
 }
-#ul{
+#ul {
   position: relative;
-  height: 350px;
+  height: 360px;
   overflow-y: scroll;
 }
-#ul li{
+#ul li {
   display: flex;
   align-items: center;
-  margin: 15px 0;
-  height: auto;
-  width: 270px;
+  margin: 10px 0;
+  height: 40px;
+  width: 320px;
   padding: 10px;
   border-radius: 15px;
-  font-size: 17px;
+  font-size: 20px;
   background-color: lightgray;
   justify-content: space-between;
 }
-.delete{
-  height: 30px;
+
+.delete {
+  height: 40px;
+  width: 55px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  font-size: 16px;
+  margin-left: 5px;
 }
-.delete:hover{
+.delete:hover {
   color: #fff;
   background-color: red;
+}
+.edit{
+  height: 40px;
+  width: 55px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  background-color: rgb(189, 58, 189);
+}
+.edit:hover{
+  color: #fff;
+  background-color: blueviolet;
 }
