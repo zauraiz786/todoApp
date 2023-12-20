@@ -54,7 +54,7 @@ form.addEventListener('submit', async (event) => {
   }
 })
 
-// render data
+// render data from different users
 let arr = [];
 async function renderTodo(uid) {
   const q = query(collection(db, "todos"), where("user_Id", "==", uid));
