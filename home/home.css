@@ -74,7 +74,7 @@ div > div {
 #ul {
   position: relative;
   height: 360px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 #ul li {
   display: flex;
