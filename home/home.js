@@ -66,7 +66,6 @@ form.addEventListener('submit', async (event) => {
       //Add Todo
       ul.prepend(li)
 
-
     } catch (e) {
       console.error("Error adding document: ", e);
     }
@@ -89,7 +88,7 @@ async function renderTodo(uid, doc) {
     li.innerHTML += item.title + '<div class="inline"><button class="edit">Edit</button><button class="delete">Delete</button></div>';
     
     li.querySelector('.edit').addEventListener('click', () => {
-      const title = prompt('Edit Todo');
+      const title = prompt('Edit Todo' , item.title);
       const todosRef = doc(db, "todos", arr[index].docId);
       updateDoc(todosRef, {
         "title": title,
