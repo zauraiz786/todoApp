@@ -51,7 +51,15 @@ form.addEventListener('submit', async (event) => {
       li.querySelector('.edit').addEventListener('click', () => {
         let reWrite = prompt('Edit Todo', input.value);
         li.innerHTML = reWrite + '<div class="inline"><button class="edit">Edit</button><button class="delete">Delete</button></div>'
+
+        console.log(docRef.id);
+        const editTodo = doc(db, "todos", docRef.id);
+
+        updateDoc(editTodo, {
+          title: reWrite,
+        })
       })
+      ul.prepend(li)
 
       //Delete Todo
       li.querySelector('.delete').addEventListener('click', function () {
@@ -64,7 +72,6 @@ form.addEventListener('submit', async (event) => {
       })
 
       //Add Todo
-      ul.prepend(li)
 
     } catch (e) {
       console.error("Error adding document: ", e);
@@ -86,17 +93,18 @@ async function renderTodo(uid, doc) {
     let li = document.createElement('li');
     li.classList.add('font');
     li.innerHTML += item.title + '<div class="inline"><button class="edit">Edit</button><button class="delete">Delete</button></div>';
-    
+
+    //Edit
     li.querySelector('.edit').addEventListener('click', () => {
-      const title = prompt('Edit Todo' , item.title);
+      const title = prompt('Edit Todo', item.title);
       const todosRef = doc(db, "todos", arr[index].docId);
       updateDoc(todosRef, {
         "title": title,
       }).then(() => {
         li.innerHTML = title + '<div class="inline"><button class="edit">Edit</button><button class="delete">Delete</button></div>'
-        }).catch((err) => {
-          console.log(err);
-        })
+      }).catch((err) => {
+        console.log(err);
+      })
     })
 
     li.querySelector('.delete').addEventListener('click', function () {
@@ -107,7 +115,7 @@ async function renderTodo(uid, doc) {
           console.log(err);
         })
     })
-    
+
 
     ul.prepend(li);
   })

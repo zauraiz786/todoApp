@@ -13,7 +13,7 @@ form.addEventListener('submit', (event) => {
     createUserWithEmailAndPassword(auth, email.value, password.value)
         .then((userCredential) => {
             const user = userCredential.user;
-            window.location = './login/login.html'
+            window.location = './home/home.html'
         })
         .catch((error) => {
             const errorCode = error.code;
